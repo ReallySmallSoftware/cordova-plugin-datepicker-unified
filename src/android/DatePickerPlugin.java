@@ -444,10 +444,11 @@ public class DatePickerPlugin extends CordovaPlugin {
 
 			return this;
 		}
-		minuteInterval = isNotEmpty(obj, "minuteInterval") ? obj.getInt("minuteInterval") : 0;
-
+		
+		public boolean isNotEmpty(JSONObject object, String key) throws JSONException {
+			return object.has(key) && !object.isNull(key) && object.get(key).toString().length() > 0
+					&& !JSONObject.NULL.toString().equals(object.get(key).toString());
 		}
-
 	}
 
 }
